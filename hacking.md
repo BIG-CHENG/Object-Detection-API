@@ -1,5 +1,5 @@
 # Object-Detection-API
-2018-08-13
+## 2018-08-13
 
 ## python path
 export PYTHONPATH=`pwd`:`pwd`/slim
@@ -13,7 +13,7 @@ python object_detection/model_main.py --pipeline_config_path=../training/2018081
 
 
 # object_detection/model_main.py
-
+```
 def main(unused_argv):
   
   train_and_eval_dict = model_lib.create_estimator_and_inputs(
@@ -22,7 +22,7 @@ def main(unused_argv):
       pipeline_config_path=FLAGS.pipeline_config_path,
       train_steps=FLAGS.num_train_steps,
       eval_steps=FLAGS.num_eval_steps)
-
+```
 
 # object_detection/model_lib.py
 
@@ -117,16 +117,6 @@ class SSDMobileNetV1FeatureExtractor(ssd_meta_arch.SSDFeatureExtractor):
 
 
   def extract_features(self, preprocessed_inputs):
-    """Extract features from preprocessed inputs.
-
-    Args:
-      preprocessed_inputs: a [batch, height, width, channels] float tensor
-        representing a batch of images.
-
-    Returns:
-      feature_maps: a list of tensors where the ith tensor has shape
-        [batch, height_i, width_i, depth_i]
-    """
     preprocessed_inputs = shape_utils.check_min_image_dim(
         33, preprocessed_inputs)
 
@@ -143,9 +133,7 @@ class SSDMobileNetV1FeatureExtractor(ssd_meta_arch.SSDFeatureExtractor):
       with slim.arg_scope(
           mobilenet_v1.mobilenet_v1_arg_scope(
               is_training=None, regularize_depthwise=True)):
-        #print "_override_base_feature_extractor_hyperparams= ", self._override_base_feature_extractor_hyperparams
-        #print "context_manager.IdentityContextManager()= ", context_manager.IdentityContextManager()
-        #print "_conv_hyperparams_fn()", self._conv_hyperparams_fn()
+
         #with (slim.arg_scope(self._conv_hyperparams_fn())
         #      if self._override_base_feature_extractor_hyperparams
         #      else context_manager.IdentityContextManager()):
@@ -160,10 +148,6 @@ class SSDMobileNetV1FeatureExtractor(ssd_meta_arch.SSDFeatureExtractor):
               use_explicit_padding=self._use_explicit_padding,
               scope=scope)
 
-      #print "image_features"
-      #for k, v in image_features.items():
-      #  print k, v
-
       with slim.arg_scope(self._conv_hyperparams_fn()):
         feature_maps = feature_map_generators.multi_resolution_feature_maps(
             feature_map_layout=feature_map_layout,
@@ -171,10 +155,6 @@ class SSDMobileNetV1FeatureExtractor(ssd_meta_arch.SSDFeatureExtractor):
             min_depth=self._min_depth,
             insert_1x1_conv=True,
             image_features=image_features)
-
-      #print "feature_maps"
-      #for k, v in feature_maps.items():
-      #  print k, v
 
     return feature_maps.values()
 
