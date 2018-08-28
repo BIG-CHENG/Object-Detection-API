@@ -25,7 +25,7 @@ def main(unused_argv):
 ```
 
 # object_detection/model_lib.py
-
+```
 def create_estimator_and_inputs(run_config,
                                 hparams,    ## [('load_pretrained', True)]
                                 pipeline_config_path,
@@ -68,10 +68,10 @@ def create_model_fn(detection_model_fn, configs, hparams, use_tpu=False):
 
 
   return model_fn
-
+```
 
 # object_detection/builders/model_builder.py
-
+```
 def _build_ssd_model(ssd_config, is_training, add_summaries,
                      add_background_class=True):
 
@@ -108,11 +108,11 @@ def _build_ssd_model(ssd_config, is_training, add_summaries,
       random_example_sampler=random_example_sampler,
       expected_classification_loss_under_sampling=
       expected_classification_loss_under_sampling)
-
+```
 
 
 # models/ssd_mobilenet_v1_feature_extractor.py
-
+```
 class SSDMobileNetV1FeatureExtractor(ssd_meta_arch.SSDFeatureExtractor):
 
 
@@ -157,13 +157,13 @@ class SSDMobileNetV1FeatureExtractor(ssd_meta_arch.SSDFeatureExtractor):
             image_features=image_features)
 
     return feature_maps.values()
-
+```
 
 
 
 # object_detection/models/feature_map_generators.py
 
-
+```
 def multi_resolution_feature_maps(feature_map_layout, depth_multiplier,
                                   min_depth, insert_1x1_conv, image_features):
   """Generates multi resolution feature maps from input image features.
@@ -297,7 +297,7 @@ def multi_resolution_feature_maps(feature_map_layout, depth_multiplier,
   return collections.OrderedDict(
       [(x, y) for (x, y) in zip(feature_map_keys, feature_maps)])
 
-
+```
 
 
 
