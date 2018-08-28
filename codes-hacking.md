@@ -7,7 +7,7 @@ export PYTHONPATH=`pwd`:`pwd`/slim
 ## ssd-mnet2
 python object_detection/model_main.py --pipeline_config_path=../training/20180813/models/ssdlite_mobilenet_v2_wider.config --model_dir=../training/20180813/models/train/  --num_train_steps=1000 --num_eval_steps=100000 --alsologtostderr
 
-## ssd-mnet2
+## ssd-mnet1
 python object_detection/model_main.py --pipeline_config_path=../training/20180813/models/ssd_mobilenet_v1_wider.config --model_dir=../training/20180813/models/train/  --num_train_steps=100000 --num_eval_steps=1000 --alsologtostderr
 
 
